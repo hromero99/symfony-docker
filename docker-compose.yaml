@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  apache:
+    container_name: apache_symfony
+    build: docker/apache
+    ports:
+      - 81:80
+    volumes:
+      - ./docker/apache/vhosts:/etc/apache2/sites-enabled
+      - ./symfony-project/:/var/www/html/
+      - ./logs/apache:/var/log/symfony_logs
+    depends_on:
+      - php
+
+  php:
+    container_name: symfony_php
+    build: docker/php
+    volumes:
+      - ./symfony-project:/var/www/html/
