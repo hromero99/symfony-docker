@@ -4,4 +4,5 @@ Deploy de proyectos creados en symfony usando docker. La idea es crear un script
 
 ## Imágenes de Docker utilizadas
 
-* Apache
+* Debian
+* PHP
