@@ -1,0 +1,26 @@
+{
+  "postgres": {
+    "container_name": "database_symfony",
+    "image": "postgres:10",
+    "volumes": [
+      "./database_storage:/var/lib/postgresql"
+    ],
+    "environment": {
+      "POSTGRES_DB": "symfony_database",
+      "POSTGRES_USER": "symfony",
+      "POSTGRES_PASSWORD": "symfony"
+    }
+  },
+  "mysql": {
+    "container_name": "database_symfony",
+    "image": "mariadb",
+    "volumes": [
+      "./database_storage:/var/lib/mysql"
+    ],
+    "environment": {
+      "MYSQL_DATABASE": "symfony_database",
+      "MYSQL_USER": "symfony",
+      "MYSQL_PASSWORD": "symfony"
+    }
+  }
+}
