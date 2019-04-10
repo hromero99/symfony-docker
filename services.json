@@ -20,7 +20,8 @@
     "environment": {
       "MYSQL_DATABASE": "symfony_database",
       "MYSQL_USER": "symfony",
-      "MYSQL_PASSWORD": "symfony"
+      "MYSQL_PASSWORD": "symfony",
+      "MYSQL_ROOT_PASSWORD": "symfony"
     }
   }
 }
