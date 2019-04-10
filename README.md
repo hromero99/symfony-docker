@@ -6,3 +6,9 @@ Deploy de proyectos creados en symfony usando docker. La idea es crear un script
 
 * Debian
 * PHP
+
+## Docker-tool.py
+
+[10-04-19]
+
+Usando como base los Dockerfiles, así como el docker-compose.yaml por defecto podemos agregar una base de datos: Mysql / Postgresql
