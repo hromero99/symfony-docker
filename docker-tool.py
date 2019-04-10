@@ -2,7 +2,7 @@
 import yaml
 import argparse
 import json
-
+import string
 # Getting default docker-compose file
 with open('docker-compose.yaml', 'r') as docker_file: docker_compose_content = yaml.load(docker_file, Loader=yaml.Loader)
 
@@ -12,6 +12,26 @@ with open('services.json', 'r') as services_file: services_file_content = json.l
 
 def add_database_to_docker_compose(database_backend):
     docker_compose_content['services']['database'] = services_file_content[database_backend]
+    if arguments_variables['symfony_folder']:
+        new_volumes_php = []
+        for volume in docker_compose_content['services']['php']['volumes']:
+            if volume.split(":")[0] == './symfony-project/':
+                final_volume = "{}:{}".format(arguments_variables['symfony_folder'], volume.split(":")[1])
+                new_volumes_php.append(final_volume)
+            else:
+                new_volumes_php.append(volume)
+        docker_compose_content['services']['php']['volumes'] = new_volumes_php
+        new_volumes_apache = []
+        for volume in docker_compose_content['services']['apache']['volumes']:
+            if volume.split(":")[0] == './symfony-project/':
+                final_volume = "{}:{}".format(arguments_variables['symfony_folder'], volume.split(":")[1])
+                new_volumes_apache.append(final_volume)
+            else:
+                new_volumes_apache.append(volume)
+        docker_compose_content['services']['apache']['volumes'] = new_volumes_apache
+
+
+
     with open("docker-compose-2.yml", "w") as new_docker_compose:
         yaml.dump(data=docker_compose_content, stream=new_docker_compose, Dumper=yaml.Dumper)
 
